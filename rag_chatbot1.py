@@ -1,5 +1,4 @@
 import os
-import uuid
 
 import chromadb
 from langchain.chains import create_retrieval_chain
@@ -17,14 +16,7 @@ CHROMA_PERSIST_DIRECTORY = os.environ.get("CHROMA_PERSIST_DIRECTORY")
 CHROMA_COLLECTION_NAME = os.environ.get("CHROMA_COLLECTION_NAME")
 
 # Retriever settings
-TOP_K_VECTOR = 8
-
-# Langchain LangSmith
-unique_id = uuid.uuid4().hex[0:8]
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = f"Tracing Walkthrough - {unique_id}"
-os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-
+TOP_K_VECTOR = 10
 
 # 既存のChromaDBを読み込みVector Retrieverを作成
 def vector_retriever(top_k: int = TOP_K_VECTOR):
